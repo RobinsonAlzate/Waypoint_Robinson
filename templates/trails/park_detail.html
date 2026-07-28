@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ park.name }} · Waypoint{% endblock %}
+{% block content %}
+<h1>{{ park.name }}</h1>
+<p>{{ park.region }}</p>
+<h2>Open trails in this park</h2>
+<ul>
+    {% for trail in trails %}
+    <li><a href="{% url 'trail_detail' trail.id %}">{{ trail.name }}</a> &mdash; {{ trail.distance_km }} km</li>
+    {% empty %}
+    <li>No open trails in this park right now.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
