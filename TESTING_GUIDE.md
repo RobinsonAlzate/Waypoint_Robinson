@@ -43,7 +43,7 @@ See `TestPhase2Polymorphism` and `TestDistancePhase2Operators`.
 **Try interactively:**
 ```python
 from waypoint_core.trail import DayHike, BackpackingRoute, TrailRun, FakeTrail
-print(DayHike.__mro__)              # show the MRO for your PR description
+print(DayHike.__mro__)              # show the MRO for  PR description
 for t in [DayHike(...), FakeTrail("Phantom")]:
     print(t.estimated_time())       # polymorphic + duck-typed in one loop
 ```
@@ -59,10 +59,7 @@ python -m venv env && source env/bin/activate   # Windows: env\Scripts\activate
 pip install -r requirements.txt
 python manage.py runserver
 ```
-Visit http://127.0.0.1:8000/ — Django welcome page (before Phase 4 templates
-are added) or the Waypoint home page (this repo already has Phase 4+ in it).
-Prove isolation: `deactivate` then run `django-admin` — should fail.
-
+Visit http://127.0.0.1:8000/ — Django welcome page 
 ---
 
 ## Phase 4 (Week 10) — Views, URLs, report form
@@ -71,10 +68,8 @@ Prove isolation: `deactivate` then run `django-admin` — should fail.
 
 **Test :**
 - Load `/` → home page.
-- Load `/report/`, submit the form → thank-you page greets you by name.
-- Remove `{% csrf_token %}` from `report_form.html` temporarily, resubmit →
-  confirm you get `403 Forbidden`, then put it back.
-- Load `/search/` with no `?q=` → renders without error.
+- Load `/report/`, submit the form → thank-you page 
+
 
 ---
 
@@ -88,10 +83,7 @@ Prove isolation: `deactivate` then run `django-admin` — should fail.
 - Load `/trails/` — table renders with `forloop.counter` row numbers and
   `floatformat:1` distances.
 
-*(Note: by the time Phase 6 wires this to the DB, the catalog view filters
-`is_open=True` at the queryset level, so the CLOSED badge markup in
-`catalog.html` becomes unreachable — that's expected, see the comment left
-in that file.)*
+
 
 ---
 
@@ -108,9 +100,7 @@ python manage.py createsuperuser
 python manage.py seed_trails      # adds 6 sample trails across 2 parks
 python manage.py runserver
 ```
-- Log into `/admin/` (seeded superuser: `admin` / `waypoint123` — **change
-  this before deploying anywhere real**), add/edit a trail, confirm it
-  appears/disappears on `/trails/` with no code change.
+- Log into `/admin/`
 - Uncheck "is open" on a trail in the admin → confirm it vanishes from the
   public catalog.
 
@@ -126,8 +116,7 @@ catalog's park column
 - Load `/trails/` — the trail's park now links to `/trails/parks/<id>/`.
 - Load that park page — lists only its open trails (`park.trails.filter(...)`).
 - Delete a Park in the admin — confirm the Trail survives with `park` set to
-  null (this repo uses `on_delete=SET_NULL`, documented in `models.py` —
-  justify your own choice in the PR description).
+  null (this repo uses `on_delete=SET_NULL`, documented in `models.py`
 
 ---
 
