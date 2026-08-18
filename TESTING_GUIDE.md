@@ -143,37 +143,6 @@ python manage.py test -v 2
 `TestCase` tests covering the open-trails query, a 404, a domain rule,
 the report happy-path, and the Park-deletion FK behavior.
 
-Then do a clean-clone dry run in a scratch folder to prove Definition of
-Done: fresh clone → venv → install → migrate → runserver, using only the
-README.
 
 ---
 
-## Splitting this into your 8 real branches/PRs
-
-This repo was built as one working whole so you could see it run end-to-end
-first. To satisfy §3's engineering standards (10% of your grade), you'll
-want to **replay it as 8 separate commits/branches** against your own empty
-repo, roughly:
-
-1. `week-07-domain-model` — add `waypoint_core/distance.py`,
-   `waypoint_core/trail.py` (Phase-1-only version), `itinerary.py`, tests.
-2. `week-08-hierarchy-and-operators` — upgrade `trail.py` to the ABC/mixin
-   version, add operator overloads to `distance.py`.
-3. `week-09-django-setup` — `manage.py`, `waypoint/`, `.gitignore`,
-   `requirements.txt`, base `README.md`.
-4. `week-10-views-urls-forms` — `waypoint/views.py`, `waypoint/urls.py`,
-   `home.html`, `report_form.html`, `thank_you.html`, `search.html`.
-5. `week-11-template-language` — `base.html`, partials, `catalog.html`
-   backed by a hardcoded list (swap the DB-backed view back to a plain
-   list temporarily if you want a historically accurate diff).
-6. `week-12-orm-and-admin` — `trails/` app, `Trail` model, migration,
-   admin, seed command, swap `catalog_view` to query the DB.
-7. `week-13-relationships-and-foreignkeys` — `Park` model, FK migration,
-   `park_detail_view`, park template/urls.
-8. `week-14-hardening-and-handoff` — `trails/tests.py`, finalize README,
-   screenshot, final PR + `v1.0` tag.
-
-Each branch's self-review checklist item "I ran the code / loaded the site
-and saw no console errors" is exactly the command block under that phase
-above — you already know it passes because I ran it.
