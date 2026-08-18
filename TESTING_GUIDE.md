@@ -2,8 +2,8 @@
 
 Every phase from the assignment is implemented and has already been verified
 running (14 domain tests + 19 total Django tests + live page hits, all green).
-This is your map of **which files satisfy which week**, and **how to test
-each phase yourself** as you split this into 8 real branches/PRs.
+This is the map of **which files satisfy which week**, and how to test
+each phase 
 
 ---
 
@@ -11,14 +11,14 @@ each phase yourself** as you split this into 8 real branches/PRs.
 **Files:** `waypoint_core/distance.py`, `waypoint_core/trail.py` (base parts),
 `waypoint_core/itinerary.py`
 
-**Test it (no Django, no venv needed):**
+**Test (no Django, no venv needed):**
 ```
 python -m unittest waypoint_core.test_domain -v
 ```
 Look at the `TestDistancePhase1`, `TestTrailPhase1`, `TestItineraryPhase1`
 classes specifically — those map 1:1 to WP-101..105.
 
-**Try it interactively:**
+**Try interactively:**
 ```python
 from waypoint_core.distance import Distance
 from waypoint_core.trail import DayHike
@@ -34,13 +34,13 @@ DayHike.from_dict({"id": "t1", "name": "Ridge", "distance_magnitude": 5,
 **Files:** same `waypoint_core/trail.py` (ABC + mixins + subclasses),
 `waypoint_core/distance.py` (operator overloads)
 
-**Test it:**
+**Test:**
 ```
 python -m unittest waypoint_core.test_domain -v
 ```
 See `TestPhase2Polymorphism` and `TestDistancePhase2Operators`.
 
-**Try it interactively:**
+**Try interactively:**
 ```python
 from waypoint_core.trail import DayHike, BackpackingRoute, TrailRun, FakeTrail
 print(DayHike.__mro__)              # show the MRO for your PR description
@@ -53,7 +53,7 @@ for t in [DayHike(...), FakeTrail("Phantom")]:
 ## Phase 3 (Week 9) — Django setup
 **Files:** `manage.py`, `waypoint/settings.py`, `.gitignore`, `requirements.txt`, `README.md`
 
-**Test it:**
+**Test:**
 ```
 python -m venv env && source env/bin/activate   # Windows: env\Scripts\activate
 pip install -r requirements.txt
@@ -69,7 +69,7 @@ Prove isolation: `deactivate` then run `django-admin` — should fail.
 **Files:** `waypoint/views.py`, `waypoint/urls.py`, `templates/home.html`,
 `templates/report_form.html`, `templates/thank_you.html`, `templates/search.html`
 
-**Test it:**
+**Test :**
 - Load `/` → home page.
 - Load `/report/`, submit the form → thank-you page greets you by name.
 - Remove `{% csrf_token %}` from `report_form.html` temporarily, resubmit →
@@ -83,7 +83,7 @@ Prove isolation: `deactivate` then run `django-admin` — should fail.
 `templates/partials/footer.html`, `templates/trails/catalog.html`,
 `static/css/style.css`
 
-**Test it:**
+**Test :**
 - Edit `templates/partials/navbar.html` — confirm every page changes.
 - Load `/trails/` — table renders with `forloop.counter` row numbers and
   `floatformat:1` distances.
@@ -100,7 +100,7 @@ in that file.)*
 (`catalog_view`), `trails/migrations/0001_initial.py`,
 `trails/management/commands/seed_trails.py`
 
-**Test it:**
+**Test:**
 ```
 python manage.py makemigrations trails
 python manage.py migrate
