@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Catalog · Waypoint{% endblock %}
+{% block content %}
+<h1>Trail Catalog</h1>
+<!-- Note: the CLOSED badge below is unreachable now that the Phase 6
+     catalog_view() filters is_open=True at the query level (see
+     trails/views.py). Left in place because Part 6's acceptance
+     criteria explicitly asks for filtering "in the query," not just
+     visual hiding -- if you ever change the view to show all trails
+     again, this badge is already wired up. -->
+<table>
+    <tr><th>#</th><th>Name</th><th>Distance</th><th>Difficulty</th><th>Status</th><th>Park</th></tr>
+    {% for trail in trails %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'trail_detail' trail.id %}">{{ trail.name }}</a></td>
+        <td>{{ trail.distance_km|floatformat:1 }} km</td>
+        <td>
+            {% if trail.difficulty == 'Expert' %}
+                <span class="badge expert">HARD</span>
+            {% else %}
+                {{ trail.difficulty }}
+            {% endif %}
+        </td>
+        <td>
+            {% if trail.is_open %}Open{% else %}<span class="badge closed">CLOSED</span>{% endif %}
+        </td>
+        <td>
+            {% if trail.park %}
+                <a href="{% url 'park_detail' trail.park.id %}">{{ trail.park.name }}</a>
+            {% else %}
+                &mdash;
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">No open trails yet &mdash; add some in the admin.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
