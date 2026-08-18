@@ -1,6 +1,6 @@
 # Waypoint
 
-A trail-finder and trip-planner. Pure-Python domain engine (`waypoint_core/`) wrapped in a Django site (`waypoint/`, `trails/`).
+A trail-finder and trip-planner. Pure-Python domain engine (`waypoint_core/`) wrapped in a Django site (`waypoint/`, `trails/`)...
 
 ## Setup
 ```
