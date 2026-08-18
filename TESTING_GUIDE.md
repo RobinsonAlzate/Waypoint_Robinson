@@ -114,23 +114,14 @@ catalog's park column
 **Test it:**
 - In `/admin/`, create a Park, assign it to a Trail.
 - Load `/trails/` — the trail's park now links to `/trails/parks/<id>/`.
-- Load that park page — lists only its open trails (`park.trails.filter(...)`).
-- Delete a Park in the admin — confirm the Trail survives with `park` set to
-  null (this repo uses `on_delete=SET_NULL`, documented in `models.py`
+- Loaded that park page — lists only its open trails (`park.trails.filter(...)`).
 
 ---
 
 ## Phase 8 (Week 14) — Hardening & handoff
 **Files:** `trails/tests.py`, this `TESTING_GUIDE.md`, `README.md`
 
-**Test it:**
-```
-python manage.py test -v 2
-```
-19 tests should pass: 14 domain-engine tests (discovered because
-`waypoint_core.test_domain` is a valid unittest module) + 5 Django
-`TestCase` tests covering the open-trails query, a 404, a domain rule,
-the report happy-path, and the Park-deletion FK behavior.
+
 
 
 ---
